@@ -34,6 +34,11 @@ This project utilizes a python package called `click` to create a cli to run ind
 The cli specifies `one, two, three, all` as options for which assessments to run, then optionally you can also supply
 a folder id after the assessment if you wish to select a folder outside of the hardcoded value in the `config.yaml`
 
+You are also able to supply a destination folder id to be used for assessment 3, if desired. 
+
+If using the source file ID or destination file ID in the cli, you must also supply assessment first, if neither are supplied you 
+can omit assessments and it will run all assessments by default, generating a destination ID supplied in the output of assessment 3.
+
 if no cli options are specified all assessments will be run in order against the default `parent_file_id`
 
 To run all assessments in order:
@@ -41,7 +46,8 @@ To run all assessments in order:
 ```commandline
 python main.py
 python main.py all
-python main.py all other-file-id
+python main.py all source-file-id
+python main.py all source-file-id destination-file-id 
 ```
 
 
@@ -55,6 +61,7 @@ python main.py three
 python main.py one other-file-id
 python main.py two other-file-id
 python main.py three other-file-id
+python main.py three other-file-id destination-file-id 
 ```
 where the command after `main.py` will correspond to the assessment number.
 
