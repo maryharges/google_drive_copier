@@ -29,7 +29,7 @@ https://developers.google.com/identity/protocols/oauth2
 
 ## Instructions for running assessments
 
-This project utilizes a python package called `click` for cli to run individual assessments (or all)
+This project utilizes a python package called `click` to create a cli to run individual assessments (or all)
 
 The cli specifies `one, two, three, all` as options for which assessments to run, then optionally you can also supply
 a folder id after the assessment if you wish to select a folder outside of the hardcoded value in the `config.yaml`
@@ -78,7 +78,7 @@ match the folder type.
 Drive file types.
 
 **Report Data:**
-Found under assessment_2_report.json
+Found under `assessment_2_report.json`
 
 * `"total_nested_files"`: the total of nested file type objects under the source folder id, including top level files
 * `"total_nested_folders"`: the total of nested folder type objects under the source folder id, including top level folders
@@ -100,7 +100,7 @@ assessment I avoided such optimization for increased code readability.
 The folder id of the copy source folder is written to a report `assessment_3_report.json` and printed.
 
 **Assumptions:**
-* By default copying a file in Google Drive will format the new file name `Copy {Name of File}`, for this project I made
+* By default, copying a file in Google Drive will format the new file name `Copy {Name of File}`, for this project I made
 the assumption that the copied files in the new destination should exactly match the original file/folder structure, so 
 duplicated files are renamed with the original file name. For example `Stranger Things` will be called `Stranger Things`
 instead of `Copy of Stranger Things`. To undo this choice, simply change the `copy_exact_filename` flag in the config.yaml file to `False`
