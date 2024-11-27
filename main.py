@@ -11,9 +11,11 @@ import services.google_drive_helpers as google_drive_helpers
     "assessment", type=click.Choice(["all", "one", "two", "three"]), default="all"
 )
 @click.argument("file_id", type=str, default="")
-def main(assessment: str, file_id: None) -> None:
+@click.argument("destination_file_id", type=str, default="")
+def main(assessment: str, file_id: None, destination_file_id: None) -> None:
     # load config
     config = yaml.safe_load(open("config.yaml"))
+    # if not provided a source file ID from cli -- default to the one stored in the config
     if not file_id:
         file_id = config["parent_file_id"]
 
@@ -30,11 +32,17 @@ def main(assessment: str, file_id: None) -> None:
         case "two":
             assessments.assessment_two(google_drive, file_id)
         case "three":
-            assessments.assessment_three(google_drive, file_id)
+            if not destination_file_id:
+                assessments.assessment_three(google_drive, file_id)
+            else:
+                assessments.assessment_three(google_drive, file_id, destination_file_id)
         case "all":
             assessments.assessment_one(google_drive, file_id)
             assessments.assessment_two(google_drive, file_id)
-            assessments.assessment_three(google_drive, file_id)
+            if not destination_file_id:
+                assessments.assessment_three(google_drive, file_id)
+            else:
+                assessments.assessment_three(google_drive, file_id, destination_file_id)
 
     # close connection to Google Drive
     google_drive.connection.close()

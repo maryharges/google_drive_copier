@@ -71,11 +71,12 @@ def assessment_two(google_drive: GoogleDrive, file_id: str) -> None:
         )
 
 
-def assessment_three(google_drive: GoogleDrive, file_id: str) -> None:
+def assessment_three(google_drive: GoogleDrive, file_id: str, destination_file_id: str = None) -> None:
     """
     Write a script to copy the content (nested files/folders) of the source folder to the destination folder.
-    :param file_id: the source file id we're running against
     :param google_drive: Google Drive resource
+    :param file_id: the source file id we're running against
+    :param destination_file_id: the destination file id we want to copy to(optional)
     :return:
     """
     source_data = {}
@@ -89,7 +90,7 @@ def assessment_three(google_drive: GoogleDrive, file_id: str) -> None:
     if pull_data:
         source_data, _, _ = google_drive.get_nested_objects(file_id)
 
-    copy_source_id = google_drive.copy_nested_items(source_data)
+    copy_source_id = google_drive.copy_nested_items(source_data, destination_file_id)
 
     print(f"copy source folder id: {copy_source_id}")
 
