@@ -39,7 +39,8 @@ You are also able to supply a destination folder id to be used for assessment 3,
 If using the source file ID or destination file ID in the cli, you must also supply assessment first, if neither are supplied you 
 can omit assessments and it will run all assessments by default, generating a destination ID supplied in the output of assessment 3.
 
-if no cli options are specified all assessments will be run in order against the default `parent_file_id`
+if no cli options are specified all assessments will be run in order against the default `parent_file_id` from the 
+assessment instructions.
 
 To run all assessments in order:
 
@@ -58,10 +59,10 @@ python main.py one
 python main.py two
 python main.py three
 
-python main.py one other-file-id
-python main.py two other-file-id
-python main.py three other-file-id
-python main.py three other-file-id destination-file-id 
+python main.py one source-file-id
+python main.py two source-file-id
+python main.py three source-file-id
+python main.py three source-file-id destination-file-id 
 ```
 where the command after `main.py` will correspond to the assessment number.
 
